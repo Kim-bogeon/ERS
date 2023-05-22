@@ -21,6 +21,10 @@ body{
 	padding:0;
 	font-family: 'Nanum Gothic', sans-serif;
 }
+.nav{
+	height:80px;
+	background:#4191B3;	
+}
 .logo{
 	margin-left:30px;
 	line-height:30px;
@@ -28,11 +32,6 @@ body{
 	font-size:25px;
 	display:inline-block;
 }
-.nav{
-	height:80px;
-	background:#4191B3;	
-}
-
 .nav-name, .nav-log{
 	display:inline-block;
 	margin-right:0;
@@ -293,7 +292,7 @@ h4 {
 	</div>
 	<div class="logo">응급안심안전서비스</div>
 </div>
-    			
+
 	<div style="width:900px; text-align:center; display:inline-block; position:absolute; top:120px; left:50px;">
 		<div id="current_date"></div>
 		<h1 id="clock"></h1>
@@ -334,14 +333,15 @@ h4 {
    
     	<div class="modal_content content">
     		<div class="modal_red">
-    			<img src="/resources/images/viber.png" style="width:80px; height:80px; margin-left:25px; margin-top:10px;"/>
+    			<img src="<%=request.getContextPath()%>/images/viber.png" style="width:80px; height:80px; margin-left:25px; margin-top:10px;"/>
     			<h1 style="display:inline-block; position:absolute; top:5px; left:115px; font-size:40px; font-family:'ChosunBg';">119 전화 연결</h1>
     		</div>
        		<div style="text-align:center; margin-top:20px;">
-				<img src="/resources/images/telephone-call.png" style="width:170px; height:170px;"/>
+				<img src="<%=request.getContextPath()%>/images/telephone-call.png" style="width:170px; height:170px;"/>
 				<p style="font-size:35px; font-family:'ChosunBg';">연결 중 ...</p>
        		</div>
-       		<img src="/resources/images/ambulance.png" style="width:130px; height:110px; margin-left:20px;"/>
+       		
+       		<img src="<%=request.getContextPath()%>/images/ambulance.png" style="width:130px; height:110px; margin-left:20px;"/>
        		<button type="button" id="modal_close_btn_119" class="bt_cancle">취 소</button>
     	   
     	   
@@ -355,8 +355,7 @@ h4 {
    
     	<div class="modal_content content">
 			<div class="modal_red">
-
-    			<img src="/resources/images/danger.png" style="width:80px; height:80px; margin-left:25px; margin-top:10px;"/>
+    			<img src="<%=request.getContextPath()%>/images/danger.png" style="width:80px; height:80px; margin-left:25px; margin-top:10px;"/>
     			<h1 style="display:inline-block; position:absolute; top:5px; left:115px; font-size:40px; font-family:'ChosunBg';">응급 호출 감지</h1>
     		</div>
        		<div style="margin-left:100px; margin-top:90px; position:relative;">
@@ -365,7 +364,7 @@ h4 {
 	       		<p style="font-size:28px;">10초 내에 취소버튼을 누르면 응급요원이 출동하지 않습니다.</p>
        		</div>
        		
-       		<img src="/resources/images/ambulance.png" style="width:130px; height:110px; margin-left:20px;"/>
+       		<img src="<%=request.getContextPath()%>/images/ambulance.png" style="width:130px; height:110px; margin-left:20px;"/>
        		<button type="button" id="modal_close_btn_call" class="bt_cancle">취 소</button>
     	   
     	   
@@ -382,15 +381,15 @@ h4 {
    
     	<div class="modal_content content">
     		<div class="modal_blue">
-    			<img src="/resources/images/viber.png" style="width:80px; height:80px; margin-left:25px; margin-top:10px;"/>
+    			<img src="<%=request.getContextPath()%>/images/viber.png" style="width:80px; height:80px; margin-left:25px; margin-top:10px;"/>
     			<h1 style="display:inline-block; position:absolute; top:5px; left:115px; font-size:40px; font-family:'ChosunBg';">전화 연결</h1>
     		</div>
        		<div style="text-align:center; margin-top:20px;">
-				<img src="/resources/images/telephone.png" style="width:150px; height:150px;"/>
+				<img src="<%=request.getContextPath()%>/images/telephone.png" style="width:150px; height:150px;"/>
 				<p style="font-size:35px; font-family:'ChosunBg';">연결 중 ...</p>
        		</div>
        		
-       		<img src="/resources/images/user.png" style="width:110px; height:110px; margin-left:20px; margin-bottom:30px;"/>
+       		<img src="<%=request.getContextPath()%>/images/user.png" style="width:110px; height:110px; margin-left:20px; margin-bottom:30px;"/>
        		<button type="button" id="modal_close_btn_telephone" class="bt_cancle"> 취 소 </button>
     	   
     	   

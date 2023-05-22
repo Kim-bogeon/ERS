@@ -424,8 +424,6 @@
     form.find('[name="checkUpload"]').val(0);
     $('#inputFileName').val(picture.files[0].name);
   }
-  
-
 </script>
 
 <%@include file="../common/foot.jspf" %>
