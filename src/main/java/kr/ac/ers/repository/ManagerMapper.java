@@ -10,5 +10,9 @@ public interface ManagerMapper {
 	ManagerVO getManagerByLoginId(@Param("id") String id);
 
 	ManagerVO selectManagerById(@Param("id") String id);
+	
+	void insertManager(ManagerVO manager);
+
+	int overlappedID(ManagerVO manager);
 		
 }

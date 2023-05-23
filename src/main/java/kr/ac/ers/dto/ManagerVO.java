@@ -8,15 +8,15 @@ import lombok.ToString;
 @Setter
 @ToString
 public class ManagerVO {
-	String manid;		 //아이디
-	String name;		 //이름
-	String birth;		 //생년월일
-	String address; 	 //주소
-	String phone; 		 //전화번호
-	String pwd; 		 //패스워드
-	String authority;	 //권한
-	String depart; 		 //부서
-	String status;		 //승인여부
-	String email; 		 //이메일
+	public String manid;		 //아이디
+	public String name;		 //이름
+	public String birth;		 //생년월일
+	public String address; 	 //주소
+	public String phone; 		 //전화번호
+	public String pwd; 		 //패스워드
+	public String authority;	 //권한
+	public String depart; 		 //부서
+	public String status;		 //승인여부
+	public String email; 		 //이메일
 	
 }

@@ -42,4 +42,14 @@ public class ManagerService {
 		return manager;
 	}
 
+	public void join(ManagerVO manager) {
+		managerMapper.insertManager(manager);
+		
+	}
+
+	public int overlappedID(ManagerVO manager) {
+		int result = managerMapper.overlappedID(manager);
+		return result;
+	}
+
 }

@@ -3,6 +3,7 @@ package kr.ac.ers.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -40,6 +41,20 @@ public class ManagerController {
 		return "/manager/common/join";
 	}
 	
+	@RequestMapping("/ers/manager/dojoin")
+	public String show_dojoin(ManagerVO manager) {
+		
+		managerService.join(manager);
+		
+		return "/ers/manager/login";
+	}
+	
+	@ResponseBody
+	@RequestMapping("/ers/manager/idCheck")
+	public int idCheck(ManagerVO manager){
+		int result = managerService.overlappedID(manager); // 중복확인한 값을 int로 받음
+		return result;
+	}
 	
 	@RequestMapping("/ers/manager/login")
 	public String showlogin(String error) {

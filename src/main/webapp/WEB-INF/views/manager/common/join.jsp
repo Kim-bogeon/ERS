@@ -121,11 +121,12 @@
 	width:500px;
 }
 .r-0{
-	right:0;
+	right:35px;
+	top:25px;
 }
 .t-32-r-0{
 	top:22px;
-	right:45px;
+	right:95px;
 }
 
 .c-red{
@@ -191,7 +192,7 @@ a{
 </div>
 
 
-  <div class="hero-content flex-col lg:flex-row-reverse" style="width: 450px; margin:auto; display:flex; align-items:center; height:85vh;">
+  <div class="hero-content flex-col lg:flex-row-reverse" style="width: 500px; margin:auto; display:flex; align-items:center; height:85vh;">
     <div class="">
       
         <div class="" style="background:#084B8A; height:80px; text-align:center;">
@@ -201,12 +202,12 @@ a{
 	
 	
 	  	
-      <div class="" style="background:#fff; width:450px; height:580px; border-radius: 0px 0px 20px 20px; padding-top:20px;">
+      <div class="" style="background:#fff; width:500px; height:620px; border-radius: 0px 0px 20px 20px; padding-top:20px;">
 			<form id="registMember" novalidate="novalidate" action="registMember.do" method="post" style="margin-left:20px;">
 				<!-- id -->
 				<div class="form-group position-relative">
-				<label for="inputID">아이디</label><span class="position-absolute r-0 d-none c-dccc" id="idCheck_OK">사용가능</span><span class="position-absolute r-0 d-none c-red" id="idCheck_NO">사용불가</span>
-				<input type="text" name="id" class="form-control form-in" id="inputID" placeholder="ID를 입력 후 중복 확인을 해 주세요" maxlength="20" onkeyPress="id_check_oneKey();" onkeyup="this.value=this.value.replace(/[\ㄱ-ㅎㅏ-ㅣ가-힣]/g, &#39;&#39;);" style="width:300px; font-size:13px;" data-name="ID">
+				<label for="inputID">아이디</label><span class="position-absolute r-0 text-success d-none c-dccc" id="idCheck_OK">사용가능</span><span class="position-absolute r-0 d-none c-red" id="idCheck_NO">사용불가</span>
+				<input type="text" name="manid" class="form-control form-in" id="inputID" placeholder="ID를 입력 후 중복 확인을 해 주세요" maxlength="20" onkeyPress="id_check_oneKey();" onkeyup="this.value=this.value.replace(/[\ㄱ-ㅎㅏ-ㅣ가-힣]/g, &#39;&#39;);" style="width:300px; font-size:13px;" data-name="ID">
 				<button type="button" class="btn_1 btn-dccc btn-original position-absolute t-32-r-0" onclick="idCheck_go()">ID 중복확인</button>
 				<span id="inputID-error" class="error invalid-feedback">아이디중복확인 해주세요!</span>
 				</div>
@@ -229,6 +230,13 @@ a{
 				<label for="inputName">이름</label>
 				<input type="text" name="name" class="form-control" id="inputName" placeholder="이름을 입력해주세요" maxlength="6" onchange="name_check()" data-name="성명" style="width:300px; font-size:13px;">
 				<span id="inputName-error" class="error invalid-feedback">이름을 입력해주세요!</span>
+				</div>
+				
+				<!-- 주소 -->
+				<div class="form-group">
+				<label for="inputName">주소</label>
+				<input type="text" name="address" class="form-control" id="inputName" placeholder="주소을 입력해주세요" maxlength="50" onchange="address_check()" data-name="주소" style="width:300px; font-size:13px;">
+				<span id="inputName-error" class="error invalid-feedback">주소를 입력해주세요!</span>
 				</div>
 										
 				<!-- 생년월일 -->
@@ -312,7 +320,7 @@ function email_confirm(){
 }
 	
 function idCheck_go(){
-	id = $('input[name="id"]');
+	id = $('input[name="manid"]');
 		
 	if(!id.val()){
 		alert("아이디를 입력해주세요.");
@@ -321,11 +329,12 @@ function idCheck_go(){
 	}
 		
 	$.ajax({
-		url:'idCheck.do',
+		url:'idCheck',
 		method:'get',
-		data:"id="+id.val().trim(),
+		async: false,
+		data:"manid="+id.val().trim(),
 		success:function(data){
-			if(data.toUpperCase() == 'DUPLICATED'){
+			if(data == 1){
 				alert("중복된 아이디입니다.");
 				id.addClass('is-invalid');
 				$('span#idCheck_OK').addClass('d-none');
@@ -406,6 +415,17 @@ function phone_check(){
 		phone.addClass('is-invalid');
 	}else{
 		phone.removeClass('is-invalid');
+	}
+}
+
+function address_check(){
+	address = $('input[name="address"]');
+	if(address.val().length < 5){
+		alert("주소를 올바르게 입력해주세요!");
+		address.focus();
+		address.addClass('is-invalid');
+	}else{
+		address.removeClass('is-invalid');
 	}
 }
 	
