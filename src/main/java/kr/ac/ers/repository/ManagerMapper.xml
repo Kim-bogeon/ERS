@@ -11,9 +11,9 @@
 		FROM manager
 		WHERE manid = #{id}
 	</select>
-	<insert id = "insertManager">
-		insert into 
-		manager(manid, pwd, name, birth, phone,email,address)
+	<insert id ="insertManager">
+		insert
+		into manager(manid, pwd, name, birth, phone,email,address)
 		values(#{manid},#{pwd},#{name},#{birth},#{phone},#{email},#{address})
 	</insert>
 	 <select id="overlappedID" parameterType="MemberVO" resultType="int">

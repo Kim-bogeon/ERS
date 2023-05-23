@@ -1,5 +1,8 @@
 package kr.ac.ers.controller;
 
+import java.io.UnsupportedEncodingException;
+import java.util.Random;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,6 +13,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import kr.ac.ers.dto.ManagerVO;
 import kr.ac.ers.service.ManagerService;
+import kr.ac.ers.utils.MailContentSend;
 
 @Controller
 public class ManagerController {
@@ -46,7 +50,7 @@ public class ManagerController {
 		
 		managerService.join(manager);
 		
-		return "/ers/manager/login";
+		return "redirect:/ers/manager/login";
 	}
 	
 	@ResponseBody
@@ -55,6 +59,52 @@ public class ManagerController {
 		int result = managerService.overlappedID(manager); // 중복확인한 값을 int로 받음
 		return result;
 	}
+	
+	@ResponseBody
+	@RequestMapping("/ers/manager/sendMail")
+	public String sendMail(String email, HttpServletRequest request, HttpServletResponse response) {
+		System.out.println("이메일 인증 요청이 들어옴!");
+		System.out.println("이메일 인증 이메일 : " + email);
+		
+		 int number = new Random().nextInt(1000000) + 100000;
+	      if(number >= 1000000) number -= 100000;
+	      
+	      
+	      String mailSet_Server="smtp.naver.com"; // 보내는 메일 server
+	      String mailSet_ID="posoii@naver.com";        // 보내는 메일 ID
+	      String mailSet_PW="";        // 보내는 메일 비밀번호
+	      
+	      String mailFromName ="응급안전안심서비스";            // 보내는 사람 이름
+	      String mailFromAddress ="<posoii@naver.com>"; // 보내는 메일 주소
+	      
+	      String mailTo   = request.getParameter("email");           // 받는  메일 주소
+	      String mailTitle ="응급안전안심서비스에서 회원가입 확인";   // 메일 제목
+	      String content = "인증번호는 " + number + "입니다 하트♥"; // 메일내용
+	      
+	      String mailFrom="";
+	      try {
+	          mailFrom =new String(mailFromName.getBytes("utf-8"), "8859_1")+mailFromAddress;
+	      } catch (UnsupportedEncodingException e) {
+	         // TODO Auto-generated catch block
+	         e.printStackTrace();
+	      }
+	      
+	      MailContentSend ms = new MailContentSend();
+	      ms.setMail(mailSet_Server, mailSet_ID, mailSet_PW);
+	      try { 
+	         ms.sendMail(mailFrom,mailTo, mailTitle, content);
+	      } catch (Exception e) {
+	         // TODO Auto-generated catch block
+	         e.printStackTrace();
+	      }
+
+	      
+	      return Integer.toString(number);
+
+	}
+	
+	
+	
 	
 	@RequestMapping("/ers/manager/login")
 	public String showlogin(String error) {

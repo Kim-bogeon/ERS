@@ -203,7 +203,7 @@ a{
 	
 	  	
       <div class="" style="background:#fff; width:500px; height:620px; border-radius: 0px 0px 20px 20px; padding-top:20px;">
-			<form id="registMember" novalidate="novalidate" action="registMember.do" method="post" style="margin-left:20px;">
+			<form id="joinManager" novalidate="novalidate" action="dojoin" method="post" style="margin-left:20px;">
 				<!-- id -->
 				<div class="form-group position-relative">
 				<label for="inputID">아이디</label><span class="position-absolute r-0 text-success d-none c-dccc" id="idCheck_OK">사용가능</span><span class="position-absolute r-0 d-none c-red" id="idCheck_NO">사용불가</span>
@@ -214,14 +214,14 @@ a{
 				<!-- password -->
 				<div class="form-group">
 				<label for="inputPassword">비밀번호</label>
-				<input type="password" name="password" class="form-control" id="inputPassword" placeholder="비밀번호를 8자 이상 20자 이하로 입력해주세요" maxlength="20" onchange="javascript:pw_length_check()" data-name="비밀번호" style="width:300px; font-size:13px;">
+				<input type="password" name="pwd" class="form-control" id="inputPassword" placeholder="비밀번호를 8자 이상 20자 이하로 입력해주세요" maxlength="20" onchange="javascript:pw_length_check()" data-name="비밀번호" style="width:300px; font-size:13px;">
 				<span id="inputPassword-error" class="error invalid-feedback">비밀번호를 8자 이상 20자 이하로 입력해주세요!</span>
 				</div>
 										
 				<!-- password check -->
 				<div class="form-group">
 				<label for="inputPasswordCK">비밀번호 확인</label>
-				<input type="password" name="passwordCK" class="form-control" id="inputPasswordCK" placeholder="비밀번호를 다시 입력해주세요" maxlength="20" onchange="javascript:pw_check()" data-name="비밀번호 확인" style="width:300px; font-size:13px;">
+				<input type="password" name="pwdCK" class="form-control" id="inputPasswordCK" placeholder="비밀번호를 다시 입력해주세요" maxlength="20" onchange="javascript:pw_check()" data-name="비밀번호 확인" style="width:300px; font-size:13px;">
 				<span id="inputPasswordCK-error" class="error invalid-feedback">비밀번호가 일치하지 않습니다!</span>
 				</div>
 										
@@ -307,7 +307,7 @@ function email_confirm(){
 	alert("인증번호가 발송되었습니다. mail을 확인해 주세요.");
 	$('div#divEmail').removeClass('d-none');
 	$.ajax({
-		url:'sendMail.do',
+		url:'sendMail',
 		method:'get',
 		data:'email='+email.val(),
 		success:function(data){
@@ -346,7 +346,7 @@ function idCheck_go(){
 				$('span#idCheck_NO').addClass('d-none');
 				$('span#idCheck_OK').removeClass('d-none');
 				checkedID=id.val().trim();
-				$('input[name="password"]').focus();
+				$('input[name="pwd"]').focus();
 			}
 		},
 		error:function(error){
@@ -356,7 +356,7 @@ function idCheck_go(){
 }
 	
 function pw_length_check(){
-	pw = $('input[name="password"]');
+	pw = $('input[name="pwd"]');
 		
 	if(pw.val().length < 8 || pw.val().length > 20){
 		alert("비밀번호 길이를 확인해주세요!");
@@ -366,8 +366,8 @@ function pw_length_check(){
 }
 	
 function pw_check(){
-	pw = $('input[name="password"]');
-	pwCK = $('input[name="passwordCK"]');
+	pw = $('input[name="pwd"]');
+	pwCK = $('input[name="pwdCK"]');
 		
 	if(pwCK.val().length < 8 || pwCK.val().length > 20){
 		alert("비밀번호 길이를 확인해주세요!");
@@ -439,6 +439,7 @@ function email_check(){
 		email.removeClass('is-invalid');
 	}
 }
+
 	
 function email_number_check(){
 	email_ck = $('input[name="email_ck"]');
@@ -452,13 +453,13 @@ function email_number_check(){
 }
 	
 function regist_go(){
-	if($('input[name="id"]').val()!=checkedID){
+	if($('input[name="manid"]').val()!=checkedID){
 		alert("아이디는 중복 확인이 필요합니다.");
-		$('input[name="id"]').focus();
+		$('input[name="manid"]').focus();
 		return;
 	}
 	isRight = true;
-	$("form#registMember").find("input.form-control").each(function(index, item){
+	$("form#joinManager").find("input.form-control").each(function(index, item){
 	        
 	if ($(this).val().trim() == '' && $(this).attr("name") != 'email_ck') {
 	     alert($(this).attr("data-name")+"을 입력하세요!");
@@ -477,7 +478,7 @@ function regist_go(){
 	  }
 	    
 	    
-	$("form#registMember").submit();
+	$("form#joinManager").submit();
 	}
 	</script>
 
