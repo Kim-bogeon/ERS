@@ -72,9 +72,9 @@ public class ManagerController {
 	      
 	      String mailSet_Server="smtp.naver.com"; // 보내는 메일 server
 	      String mailSet_ID="posoii@naver.com";        // 보내는 메일 ID
-	      String mailSet_PW="";        // 보내는 메일 비밀번호
+	      String mailSet_PW="rlfls001109";        // 보내는 메일 비밀번호
 	      
-	      String mailFromName ="응급안전안심서비스";            // 보내는 사람 이름
+	      String mailFromName ="ERS";            // 보내는 사람 이름
 	      String mailFromAddress ="<posoii@naver.com>"; // 보내는 메일 주소
 	      
 	      String mailTo   = request.getParameter("email");           // 받는  메일 주소

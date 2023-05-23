@@ -261,16 +261,14 @@ a{
 				<span id="inputEmail-error" class="error invalid-feedback" >이메일 형식에 맞게 입력해주세요!</span>
 				</div>
 										
-				<div class="input-group col-sm-6 input-group p-0 ml-auto mb-4 d-none" id="divEmail">
-				<input type="text" name="email_ck" placeholder="Email 인증번호 입력" class="form-control" style="width:300px; font-size:13px;">
-				<span class="input-group-append">
-				<button type="button" class="btn btn-dccc btn-original" onkeyPress="javascript:CheckInputNum();" onclick="email_number_check()">확인</button>
-				</span>
+				<div class="col-sm-6 p-0 ml-auto mb-4 d-none" id="divEmail">
+					<input type="text" name="email_ck" placeholder="Email 인증번호 입력" class="d-inline-block form-control" style="width:150px; font-size:13px;">
+					<button type="button" class="btn_1 btn-dccc btn-original d-inline-block" style=""onkeyPress="javascript:CheckInputNum();" onclick="email_number_check()">확인</button>
 				</div>
 										
 				<div class="text-right mt-5" style="text-align:center;">
 					<button type="button" class="btn bg-gradient-secondary"style="height:40px; background:#585858; border-radius:5px; border:0; cursor:pointer; background:#F2F2F2; border:1px solid #848484;" onclick="history.back();">뒤로가기</button>&nbsp;
-					<button type="button" class="btn btn-dccc btn-original" onclick="regist_go()" style="height:40px; background:#585858; border-radius:5px; border:0; color:white; cursor:pointer; background:#084B8A;">회원가입</button>
+					<button type="button" class="btn btn-dccc btn-original" onclick="join_go()" style="height:40px; background:#585858; border-radius:5px; border:0; color:white; cursor:pointer; background:#084B8A;">회원가입</button>
 				</div>
 			</form>
     
@@ -452,7 +450,7 @@ function email_number_check(){
 	
 }
 	
-function regist_go(){
+function join_go(){
 	if($('input[name="manid"]').val()!=checkedID){
 		alert("아이디는 중복 확인이 필요합니다.");
 		$('input[name="manid"]').focus();
@@ -478,8 +476,13 @@ function regist_go(){
 	  }
 	    
 	    
-	$("form#joinManager").submit();
+	if('input[name="email_ck"]' != null ) {
+		alert("회원가입이 완료되었습니다.");
+		$("form#joinManager").submit();
 	}
+	}
+	
+	
 	</script>
 
 
