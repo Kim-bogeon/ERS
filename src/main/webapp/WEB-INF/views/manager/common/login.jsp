@@ -60,7 +60,7 @@ button{
 	   	
 	          	<br>
 	          <div style="text-align:left;">
-	            <a href="#" class="mt-2 label-text-alt link link-info link-hover" style="">회원가입</a><br/>
+	            <a href="/ers/manager/join" class="mt-2 label-text-alt link link-info link-hover" style="">회원가입</a><br/>
 	            <a href="/ers/manager/findid" class="mt-1 label-text-alt link link-info link-hover" style="">아이디찾기</a><br/>
 	            <a href="/ers/manager/findpw" class="mt-1 label-text-alt link link-info link-hover" style="">비밀번호찾기</a>
 	        	</div>

@@ -34,6 +34,12 @@ public class ManagerController {
 		return "/manager/home/area";
 	}
 	
+
+	@RequestMapping("/ers/manager/join")
+	public String show_join() {
+		return "/manager/common/join";
+	}
+	
 	
 	@RequestMapping("/ers/manager/login")
 	public String showlogin(String error) {
@@ -47,8 +53,8 @@ public class ManagerController {
 		int result = managerService.login(id, pwd);
 		switch (result) {
 		case 0: //로그인 성공
-			ManagerVO loginUser = managerService.getManager(id);
-			String depart =loginUser.getDepart().substring(0, 2);
+			ManagerVO loginManager = managerService.getManager(id);
+			String depart =loginManager.getDepart().substring(0, 2);
 			
 			
 			if (depart.equals("행정")) {
@@ -61,7 +67,7 @@ public class ManagerController {
 				url="redirect:/ers/home/area";
 			}
 			
-			session.setAttribute("loginUser", loginUser);
+			session.setAttribute("loginManager", loginManager);
 			session.setMaxInactiveInterval(60 * 6);
 			
 			break;
