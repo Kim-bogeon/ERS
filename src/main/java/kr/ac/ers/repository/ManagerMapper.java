@@ -14,5 +14,6 @@ public interface ManagerMapper {
 	void insertManager(ManagerVO manager);
 
 	int overlappedID(ManagerVO manager);
-		
+
+	String manager_FindId(@Param("name") String name, @Param("phone")String phone);
 }

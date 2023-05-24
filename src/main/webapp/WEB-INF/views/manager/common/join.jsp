@@ -277,10 +277,7 @@ a{
 </div>
 </div>
 
-<script>
-	
-
-	
+<script>	
 checkedID = "";
 nowEmail = "";
 checkEmail = "";
@@ -483,7 +480,7 @@ function join_go(){
 	}
 	
 	
-	</script>
+</script>
 
 
 

@@ -72,13 +72,13 @@ public class ManagerController {
 	      
 	      String mailSet_Server="smtp.naver.com"; // 보내는 메일 server
 	      String mailSet_ID="posoii@naver.com";        // 보내는 메일 ID
-	      String mailSet_PW="rlfls001109";        // 보내는 메일 비밀번호
+	      String mailSet_PW="";        // 보내는 메일 비밀번호
 	      
 	      String mailFromName ="ERS";            // 보내는 사람 이름
 	      String mailFromAddress ="<posoii@naver.com>"; // 보내는 메일 주소
 	      
 	      String mailTo   = request.getParameter("email");           // 받는  메일 주소
-	      String mailTitle ="응급안전안심서비스에서 회원가입 확인";   // 메일 제목
+	      String mailTitle ="응급안전안심서비스 인증번호";   // 메일 제목
 	      String content = "인증번호는 " + number + "입니다 하트♥"; // 메일내용
 	      
 	      String mailFrom="";
@@ -151,16 +151,17 @@ public class ManagerController {
 	
 	@RequestMapping("/ers/manager/findid")
 	public String showfind_id() {
-		
-		
 		return "/manager/common/find_id";
 	}
 	
 	@RequestMapping("/ers/manager/dofindid")
-	public String find_id(String name, String phone, String email, String code) {
+	public String find_id(String name, String phone) {
+		phone = phone.substring(0,3) +"-" + phone.substring(3,7) + "-" +phone.substring(7,11);
+		String manid = managerService.manager_findId(name, phone);
 		
 		
-		return "/manager/common/find_id";
+		System.out.print(name + phone);
+		return "redirect:/ers/manager/confirmid?id="+manid;
 	}
 	
 	@RequestMapping("/ers/manager/findpw")
@@ -169,7 +170,7 @@ public class ManagerController {
 	}
 
 	@RequestMapping("/ers/manager/confirmid")
-	public String confirm_id() {
+	public String showconfirm_id() {
 		return "/manager/common/confirm_id";
 	}
 	

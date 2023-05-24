@@ -51,5 +51,10 @@ public class ManagerService {
 		int result = managerMapper.overlappedID(manager);
 		return result;
 	}
+	
+	public String manager_findId(String name, String phone) {
+		String manid = managerMapper.manager_FindId(name, phone);
+		return manid;
+	}
 
 }

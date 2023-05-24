@@ -21,4 +21,9 @@
 		from manager
 		where manid=#{manid}
 	</select>
+	<select id="manager_FindId" parameterType="String" resultType="String">
+		select manid 
+		from manager 
+		where name = #{name} and phone = #{phone} 
+	</select>
 </mapper>
