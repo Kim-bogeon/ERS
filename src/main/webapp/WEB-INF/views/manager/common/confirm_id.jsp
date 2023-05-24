@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -42,7 +43,12 @@ button{
 	  	
       <div class="" style="background:#fff; width:450px; height:150px; border-radius: 0px 0px 20px 20px; padding-top:50px;">
         <div class="form-control" style="text-align:center; height:50px;">
-       	  	<div style=" line-height:50px;">김보건님의 아이디는 mimi입니다.</div>
+        	<c:if test="${not empty param.id}">
+       	  		<div style=" line-height:50px;">아이디는 ${param.id}입니다.</div>
+       	  	</c:if>
+       	  	<c:if test="${empty param.id}">
+       	  		<div style=" line-height:50px;">정보에 맞는 아이디가 존재하지 않습니다.</div>
+       	  	</c:if>
         </div>
         
       
@@ -54,7 +60,6 @@ button{
     
     
   </div>
-</div>
 </div>
 
 

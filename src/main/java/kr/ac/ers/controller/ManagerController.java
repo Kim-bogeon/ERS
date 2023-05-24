@@ -72,7 +72,7 @@ public class ManagerController {
 	      
 	      String mailSet_Server="smtp.naver.com"; // 보내는 메일 server
 	      String mailSet_ID="posoii@naver.com";        // 보내는 메일 ID
-	      String mailSet_PW="";        // 보내는 메일 비밀번호
+	      String mailSet_PW="rlfls001109";        // 보내는 메일 비밀번호
 	      
 	      String mailFromName ="ERS";            // 보내는 사람 이름
 	      String mailFromAddress ="<posoii@naver.com>"; // 보내는 메일 주소
@@ -159,6 +159,9 @@ public class ManagerController {
 		phone = phone.substring(0,3) +"-" + phone.substring(3,7) + "-" +phone.substring(7,11);
 		String manid = managerService.manager_findId(name, phone);
 		
+		if (manid == null) {
+			manid ="";
+		}
 		
 		System.out.print(name + phone);
 		return "redirect:/ers/manager/confirmid?id="+manid;
