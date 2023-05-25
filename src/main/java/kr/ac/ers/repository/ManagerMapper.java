@@ -7,13 +7,16 @@ import kr.ac.ers.dto.ManagerVO;
 @Mapper
 public interface ManagerMapper {
 
-	ManagerVO getManagerByLoginId(@Param("id") String id);
+	ManagerVO getManagerByLoginId(@Param("manid") String manid);
 
-	ManagerVO selectManagerById(@Param("id") String id);
+	ManagerVO selectManagerById(@Param("manid") String manid);
 	
 	void insertManager(ManagerVO manager);
 
 	int overlappedID(ManagerVO manager);
 
 	String manager_FindId(@Param("name") String name, @Param("phone")String phone);
+	
+	String manager_FindPw(@Param("manid") String manid, @Param("phone")String phone);
+	
 }

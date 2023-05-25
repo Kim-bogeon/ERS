@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
 <meta charset="UTF-8">
-<title>직원 ID 찾기</title>
+<title>직원 pwd 찾기</title>
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -205,11 +205,11 @@ a{
       <div class="" style="background:#fff; width:450px; height:400px; border-radius: 0px 0px 20px 20px; padding-top:50px;">
 
 
-		<form id="Manager_findPw"action="dofindpw" method="post"  style="margin-left:20px;" novalidate="novalidate">				
+		<form id="Manager_findPw" action="dofindpw" method="post"  style="margin-left:20px;" novalidate="novalidate">				
 			<!-- 이름 -->
 			<div class="form-group">
 			<label for="inputName">아이디</label>
-			<input type="text" name="manid" class="form-control" id="inputID" placeholder="아이디를 입력해주세요" maxlength="20" data-name="ID" style="width:300px; font-size:13px;">
+			<input type="text" name="manid" class="form-control form-in" id="inputID" placeholder="ID를 입력해주세요" maxlength="20" onkeyPress="id_check_oneKey();" onkeyup="this.value=this.value.replace(/[\ㄱ-ㅎㅏ-ㅣ가-힣]/g, &#39;&#39;);" style="width:300px; font-size:13px;" data-name="ID">
 			<span id="inputID-error" class="error invalid-feedback">아이디를 입력해주세요!</span>
 			</div>
 	        
@@ -246,6 +246,11 @@ a{
 checkedID = "";
 nowEmail = "";
 checkEmail = "";
+function id_check_oneKey(){
+	if($('input[name="id"]').val()!= checkedID) {
+		$('input[name="id"]').addClass('is-invalid');
+		}
+	}
 function email_confirm(){
 	/* email = $('input[name="email"]').va(); */
 	email = $('input[name="email"]');
@@ -303,6 +308,7 @@ function idCheck_go(){
 		id.focus();
 		return;
 	}
+}
 
 function phone_check(){
 	phone = $('input[name="phone"]');
@@ -339,7 +345,7 @@ function next_go(){
 	     $(this).focus();
 	     isRight = false;
 	     return false;
-	}
+		}
 	});
 	if (!isRight) {
 	    return false;}

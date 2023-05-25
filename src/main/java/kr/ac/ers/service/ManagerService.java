@@ -56,5 +56,9 @@ public class ManagerService {
 		String manid = managerMapper.manager_FindId(name, phone);
 		return manid;
 	}
+	
+	public String manager_findPw(String id, String phone) {
+		return managerMapper.manager_FindPw(id, phone);
+	}
 
 }

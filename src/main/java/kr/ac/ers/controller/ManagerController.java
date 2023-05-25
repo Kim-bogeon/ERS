@@ -166,16 +166,28 @@ public class ManagerController {
 		System.out.print(name + phone);
 		return "redirect:/ers/manager/confirmid?id="+manid;
 	}
-	
-	@RequestMapping("/ers/manager/findpw")
-	public String find_pw() {
-		return "/manager/common/find_pw";
-	}
-
 	@RequestMapping("/ers/manager/confirmid")
 	public String showconfirm_id() {
 		return "/manager/common/confirm_id";
 	}
+	
+	@RequestMapping("/ers/manager/findpw")
+	public String showfind_pw() {
+		return "/manager/common/find_pw";
+	}
+
+	@RequestMapping("/ers/manager/dofindpw")
+	public String find_pw(String manid, String phone) {
+		phone = phone.substring(0,3) +"-" + phone.substring(3,7) + "-" +phone.substring(7,11);
+		String id = managerService.manager_findPw(manid, phone);
+		
+		if (id == null) {
+			id ="";
+		}
+		
+		return "redirect:/ers/manager/resetpw?id="+id;
+	}
+	
 	
 	@RequestMapping("/ers/manager/resetpw")
 	public String reset_pw() {
