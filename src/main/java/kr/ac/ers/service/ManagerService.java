@@ -60,5 +60,9 @@ public class ManagerService {
 	public String manager_findPw(String id, String phone) {
 		return managerMapper.manager_FindPw(id, phone);
 	}
+	
+	public void manager_resetPw(String id, String pwd) {
+		managerMapper.manager_resetPw(id, pwd);
+	}
 
 }

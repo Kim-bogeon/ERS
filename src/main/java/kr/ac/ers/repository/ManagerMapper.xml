@@ -21,12 +21,12 @@
 		from manager
 		where manid=#{manid}
 	</select>
-	<select id="manager_FindId" parameterType="String" resultType="String">
+	<select id="manager_FindId" resultType="String">
 		select manid 
 		from manager 
 		where name = #{name} and phone = #{phone} 
 	</select>
-	<select id="manager_FindPw" parameterType="String" resultType="String">
+	<select id="manager_FindPw" resultType="String">
 		select manid
 		from manager 
 		where manid = #{manid} and phone = #{phone} 
@@ -34,6 +34,6 @@
 	<update id="manager_resetPw">
 		update manager 
 		set pwd = #{pwd}
-		where manid = #{manid} and phone =#{phone};
+		where manid = #{manid}
 	</update>
 </mapper>

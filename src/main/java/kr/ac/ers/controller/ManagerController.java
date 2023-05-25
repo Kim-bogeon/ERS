@@ -188,9 +188,17 @@ public class ManagerController {
 		return "redirect:/ers/manager/resetpw?id="+id;
 	}
 	
-	
 	@RequestMapping("/ers/manager/resetpw")
-	public String reset_pw() {
+	public String showreset_pw() {
 		return "/manager/common/reset_pw";
+	}
+	
+	
+	@RequestMapping("/ers/manager/doresetpw")
+	public String reset_pw(String manid, String pwd) {
+		System.out.print(manid + "/" + pwd);
+		managerService.manager_resetPw(manid, pwd);
+		
+		return "redirect:/ers/manager/login";
 	}
 }

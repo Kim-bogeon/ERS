@@ -19,4 +19,6 @@ public interface ManagerMapper {
 	
 	String manager_FindPw(@Param("manid") String manid, @Param("phone")String phone);
 	
+	void manager_resetPw(@Param("manid") String manid, @Param("pwd")String pwd);
+	
 }
