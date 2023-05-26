@@ -2,9 +2,11 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-<head>
 <meta charset="UTF-8">
 <title></title>
+<head>
+  <!-- 제이쿼리 불러오기 -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
 <body>
 <style>
@@ -301,7 +303,7 @@ h4 {
 		
 		<div style="display:flex; justify-content:space-around; margin-top:60px;"> 
 			<button class="bt bt_119" type="button" id="modal_open_btn_119">119</button>
-			<button class="bt bt_call" type="button" id="modal_open_btn_call"><p class="bt_p">응 급<br>호 출</p></button>
+			<button class="bt bt_call" type="button" id="modal_open_btn_call"><p class="bt_p" >응 급<br>호 출</p></button>
 			<button class="bt bt_telephone" type="button" id="modal_open_btn_telephone"><p class="bt_p">전 화<br>연 결</p></button>
 		</div>
 	</div>
@@ -451,7 +453,15 @@ document.getElementById("modal_close_btn_119").onclick = function() {
 
 document.getElementById("modal_open_btn_call").onclick = function() {
     document.getElementById("modal_call").style.display="block";
+    
+    
+    $.ajax({
+    	url:'/ers/user/occurEmergency',
+    	type:'POST',
+    	data:{stype:'1'},
+    });
 }
+
 
 document.getElementById("modal_close_btn_call").onclick = function() {
     document.getElementById("modal_call").style.display="none";
@@ -464,9 +474,6 @@ document.getElementById("modal_open_btn_telephone").onclick = function() {
 document.getElementById("modal_close_btn_telephone").onclick = function() {
     document.getElementById("modal_telephone").style.display="none";
 }
-
-
-
 
 
 </script>

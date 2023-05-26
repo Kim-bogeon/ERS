@@ -13,14 +13,14 @@ import kr.ac.ers.service.MemberService;
 @Controller
 public class MainController {
 	
-	@Autowired
-	private MemberService memberService;
-	
-	@GetMapping("/main/index")
-	public String root(Model model) {
-		List<MemberVO> memberlist = memberService.getMemberList();
-		model.addAttribute("memberlist", memberlist);
-		return "main/index";
-	}
+//	@Autowired
+//	private MemberService memberService;
+//	
+//	@GetMapping("/main/index")
+//	public String root(Model model) {
+//		List<MemberVO> memberlist = memberService.getMemberList();
+//		model.addAttribute("memberlist", memberlist);
+//		return "main/index";
+//	}
 	
 }

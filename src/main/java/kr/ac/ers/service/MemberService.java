@@ -13,8 +13,11 @@ public class MemberService {
 
 	@Autowired
 	private MemberMapper memberMapper;
-	
-	public List<MemberVO> getMemberList() {
-		return memberMapper.selectMemberList();
+
+	public MemberVO getMember(int id) {
+		
+		return memberMapper.selectMember(id);
 	}
+	
+	
 }

@@ -10,5 +10,7 @@ import kr.ac.ers.dto.MemberVO;
 public interface MemberMapper {
 
 	List<MemberVO> selectMemberList();
+
+	MemberVO selectMember(int id);
 		
 }
