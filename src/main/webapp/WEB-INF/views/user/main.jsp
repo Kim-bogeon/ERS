@@ -136,6 +136,7 @@ h4 {
     font-size:25px;
     font-family:'ChosunBg';
     border:1px solid #BDBDBD;
+	cursor:pointer;
 }
 
 .bt_sen1{
@@ -286,6 +287,9 @@ h4 {
   border:0px;
   border-radius:50px;
 }
+.bt{
+	cursor:pointer;
+}
 </style>
 
 <div class="nav" style="position:relative;">
@@ -320,15 +324,15 @@ h4 {
 			<h4>출입문감지센서 : 외출 / 오후 6 : 17 </h4>
 		</div>
 		<div class="sen_div">
-			<div class="bt_sen1 bt_sen">
-				<p style="margin-left:30px;">화 재<br>감 지</p>
-			</div>
-			<div class="bt_sen2 bt_sen">
-				<p style="margin-left:25px;">활동량<br>감 지</p>
-			</div>
-			<div class="bt_sen3 bt_sen">
-				<p style="margin-left:25px;">출입문<br>감 지</p>
-			</div>
+			<button id="bt_sen1"class="bt_sen1 bt_sen" type="button">
+				<p style="margin-left:25px;">화 재<br>감 지</p>
+			</button>
+			<button class="bt_sen2 bt_sen" type="button">
+				<p style="margin-left:17px;">활동량<br>감 지</p>
+			</button>
+			<button class="bt_sen3 bt_sen" type="button">
+				<p style="margin-left:17px;">출입문<br>감 지</p>
+			</button>
 		</div>
 	</div>
 
@@ -365,6 +369,7 @@ h4 {
 	       	    <p style="font-size:35px; font-weight:bold;">10초 후, 응급요원이 출동하오니</p>
 	        	<p style="font-size:28px;">실제상황이 아니라면 취소버튼을 눌러주세요.</p>
 	       		<p style="font-size:28px;">10초 내에 취소버튼을 누르면 응급요원이 출동하지 않습니다.</p>
+	       		<div id="timer"></div>
        		</div>
        		
        		<img src="/resources/images/ambulance.png" style="width:130px; height:110px; margin-left:20px;"/>
@@ -411,6 +416,31 @@ month = date.getMonth() + 1;
 day = date.getDate();
 
 
+function updateTimer() {
+    const future = Date.parse("2024/01/01 00:00:00");
+    const now = new Date();
+    const diff = future - now;
+
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const hours = Math.floor(diff / (1000 * 60 * 60));
+    const mins = Math.floor(diff / (1000 * 60));
+    const secs = Math.floor(diff / 1000);
+
+    const d = days;
+    const h = hours - days * 24;
+    const m = mins - hours * 60;
+    const s = secs - mins * 60;
+
+    document.getElementById("timer")
+     .innerHTML =
+     '<div>' + d + '<span>Days</span></div>' +
+     '<div>' + h + '<span>Hours</span></div>' +
+     '<div>' + m + '<span>Minutes</span></div>' +
+     '<div>' + s + '<span>Seconds</span></div>';
+}
+
+setInterval(updateTimer, 1000);
+
 clock = document.querySelector("#clock")
 
 function getClock() {
@@ -445,6 +475,12 @@ btnOpenPopup = document.querySelector('.btn-open-popup');
 
 document.getElementById("modal_open_btn_119").onclick = function() {
     document.getElementById("modal_119").style.display="block";
+    
+    $.ajax({
+    	url:'/ers/user/occurEmergency',
+    	type:'POST',
+    	data:{stype:'2'},
+    });
 }
 
 document.getElementById("modal_close_btn_119").onclick = function() {
@@ -473,6 +509,14 @@ document.getElementById("modal_open_btn_telephone").onclick = function() {
 
 document.getElementById("modal_close_btn_telephone").onclick = function() {
     document.getElementById("modal_telephone").style.display="none";
+}
+
+document.getElementById("bt_sen1").onclick = function() {
+    $.ajax({
+    	url:'/ers/user/occurEmergency',
+    	type:'POST',
+    	data:{stype:'3'},
+    });
 }
 
 

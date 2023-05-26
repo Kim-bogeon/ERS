@@ -28,6 +28,7 @@ public class UserController {
 	@RequestMapping("/ers/user/occurEmergency")
 	@ResponseBody
 	public void occurEmergency(String stype,  HttpSession session) {
+		
 		MemberVO user  = (MemberVO)session.getAttribute("user"); 
 		System.out.println(stype);
 		emergencyService.occurEmergency(stype, user.getId());
