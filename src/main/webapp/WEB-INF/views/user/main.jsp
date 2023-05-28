@@ -267,14 +267,14 @@ h4 {
 
 .bt_cancle {
 	background:#424242;
-	width:200px;
+	width:300px;
 	height:70px;
-	font-size:40px;
+	font-size:35px;
 	color:white;	
 	font-family:'ChosunBg';
 	border-radius:15px;
 	position:absolute;
-	right:250px;
+	right:270px;
 	bottom:20px;
 	
 }
@@ -327,10 +327,10 @@ h4 {
 			<button id="bt_sen1"class="bt_sen1 bt_sen" type="button">
 				<p style="margin-left:25px;">화 재<br>감 지</p>
 			</button>
-			<button class="bt_sen2 bt_sen" type="button">
+			<button id="bt_sen2" class="bt_sen2 bt_sen" type="button">
 				<p style="margin-left:17px;">활동량<br>감 지</p>
 			</button>
-			<button class="bt_sen3 bt_sen" type="button">
+			<button id="bt_sen3" class="bt_sen3 bt_sen" type="button">
 				<p style="margin-left:17px;">출입문<br>감 지</p>
 			</button>
 		</div>
@@ -358,7 +358,7 @@ h4 {
 	
 
 	<div id="modal_call">
-   
+   x
     	<div class="modal_content content">
 			<div class="modal_red">
 
@@ -416,30 +416,21 @@ month = date.getMonth() + 1;
 day = date.getDate();
 
 
-function updateTimer() {
-    const future = Date.parse("2024/01/01 00:00:00");
-    const now = new Date();
-    const diff = future - now;
+var setSecond = 10;
+function updateDateTime2() {
+     
+     if(setSecond < 0){
+        
+     }else{
+     console.log(setSecond + "초");
+        
+     }
+     setSecond-=1;
+ }
+   
+updateDateTime2();
 
-    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-    const hours = Math.floor(diff / (1000 * 60 * 60));
-    const mins = Math.floor(diff / (1000 * 60));
-    const secs = Math.floor(diff / 1000);
-
-    const d = days;
-    const h = hours - days * 24;
-    const m = mins - hours * 60;
-    const s = secs - mins * 60;
-
-    document.getElementById("timer")
-     .innerHTML =
-     '<div>' + d + '<span>Days</span></div>' +
-     '<div>' + h + '<span>Hours</span></div>' +
-     '<div>' + m + '<span>Minutes</span></div>' +
-     '<div>' + s + '<span>Seconds</span></div>';
-}
-
-setInterval(updateTimer, 1000);
+setInterval(updateDateTime2, 1000);
 
 clock = document.querySelector("#clock")
 
