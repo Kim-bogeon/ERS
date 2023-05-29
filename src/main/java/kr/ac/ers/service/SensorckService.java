@@ -24,6 +24,20 @@ public class SensorckService {
 		return sensor;
 		
 	}
+	
+	public SensorckVO modifyActivetime(String id) {
+		
+		sensorckMapper.updateActivetime(id);
+		
+		SensorckVO sensor =sensorckMapper.getSensorck(id);
+		
+		return sensor;
+		
+	}
+	
+	public SensorckVO getMemberStasus (String id) {
+		return sensorckMapper.getSensorck(id);
+	}
 
 } 
 	

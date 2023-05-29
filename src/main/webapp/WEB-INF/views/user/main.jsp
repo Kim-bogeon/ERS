@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <meta charset="UTF-8">
@@ -319,15 +320,15 @@ h4 {
 		</div>
 		<div class="info info_box2">
 			<h2>센서 감지 정보</h2>
-			<h4>활동량감지센서 : 활동중 / <span id="activetime"></span></h4>
-			<h4>화재감지센서 : 미감지 / - </h4>
-			<h4>출입문감지센서 : <span class="out home"></span> / <span id="outtime"></span></h4>
+			<h4>활동량감지센서 : <span id="active">${sensorck.outconfirm eq 'N' ? '활동중' : '미감지'}</span> / <span id="activetime"><fmt:formatDate value="${sensorck.activetime}" pattern="HH시 MM분"/></span></h4>
+			<h4>화재감지센서 : <span id="fire"></span> / <span id="occurtime"></span></h4>
+			<h4>출입문감지센서 : <span class="out home">${sensorck.outconfirm eq 'N' ? '재실' : '외출' }</span> / <span id="outtime"><fmt:formatDate value="${sensorck.outtime}" pattern="HH시 MM분"/></span></h4>
 		</div>
 		<div class="sen_div">
 			<button id="bt_sen1"class="bt_sen1 bt_sen" type="button">
 				<p style="margin-left:25px;">화 재<br>감 지</p>
 			</button>
-			<button id="bt_sen2" class="bt_sen2 bt_sen" type="button">
+			<button id="bt_sen2" class="bt_sen2 bt_sen" type="button" onclick="changeActivetime_go();">
 				<p style="margin-left:17px;">활동량<br>감 지</p>
 			</button>
 			<button id="bt_sen3" class="bt_sen3 bt_sen" type="button" onclick="changeOutconfirm_go();">
@@ -502,16 +503,29 @@ document.getElementById("modal_close_btn_telephone").onclick = function() {
     document.getElementById("modal_telephone").style.display="none";
 }
 
-document.getElementById("bt_sen1").onclick = function() {
+$('#occurtime').text('-');
+$('#fire').text("미감지");
+
+
+document.getElementById("bt_sen1").onclick = function() {    
     $.ajax({
     	url:'/ers/user/occurEmergency',
     	type:'POST',
     	data:{stype:'3'},
+    	success:function(data){
+    		var dateObj1=new Date(data.occurtime);
+	          
+	        var hour1=dateObj1.getHours();
+	        var minute1 = dateObj1.getMinutes();
+	      	$('#occurtime').text(hour1+"시 "+minute1+"분");
+	      	$('#fire').text("화재감지");
+    	},error:function(error){
+    		alert(error);
+    	}
     });
 }
 
 function changeOutconfirm_go(){
-		alert("1");
 	  $.ajax({
 	    	url:'getChangeOutConfirm',
 	  		success:function(data){
@@ -522,6 +536,8 @@ function changeOutconfirm_go(){
 	  	         	var minute1 = dateObj1.getMinutes();
 	  	      		$('#activetime').text(hour1+"시 "+minute1+"분");
 	  	      		$('.home').text("재실");
+	  	      		$('#outtime').text('');
+	  	      		$('#active').text("활동중");
 	  	      		
 	  	         	
 	  			}else{
@@ -531,12 +547,30 @@ function changeOutconfirm_go(){
 	  	         	var minute1 = dateObj1.getMinutes();
 	  	         	$('#outtime').text(hour1+"시 "+minute1+"분");
 	  	         	$('.out').text("외출");
+	  	         	
 	  			}
 	  		},error:function(error){
 	  			alert(error);
 	  		} 
 	    });
+}
+
+function changeActivetime_go(){
+	$.ajax({
+		url:'getChangeActivetime',
+		success:function(data){
+			var dateObj1=new Date(data.activetime);
+	          
+	        var hour1=dateObj1.getHours();
+	        var minute1 = dateObj1.getMinutes();
+	      	$('#activetime').text(hour1+"시 "+minute1+"분");
+	      	$('#active').text("활동중");
+		},error:function(error){
+			alert(error);
+		}
 	
+	});
+
 }
 
 

@@ -25,4 +25,9 @@
     	activetime=sysdate
 		where id=#{id}
 	</update>
+	<update id="updateActivetime">
+		update sensorck
+		set activetime=sysdate
+		where id=#{id}
+	</update>
 </mapper>

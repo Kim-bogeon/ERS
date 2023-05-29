@@ -11,4 +11,13 @@
 		select EMERGENCY_SEQ.nextVal
       	from dual
 	</select>
+	<select id="selectNewEmergency" resultType="emergencyVO">
+	select *
+	from(
+   	select *
+   	from emergency
+   	order by OCCURTIME DESC
+	)
+	where ROWNUM = 1 and id=#{id}
+	</select>
 </mapper>
