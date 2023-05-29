@@ -319,9 +319,9 @@ h4 {
 		</div>
 		<div class="info info_box2">
 			<h2>센서 감지 정보</h2>
-			<h4>활동량감지센서 : 활동중 / 오후 6 : 17 </h4>
+			<h4>활동량감지센서 : 활동중 / <span id="activetime"></span></h4>
 			<h4>화재감지센서 : 미감지 / - </h4>
-			<h4>출입문감지센서 : 외출 / 오후 6 : 17 </h4>
+			<h4>출입문감지센서 : <span class="out home"></span> / <span id="outtime"></span></h4>
 		</div>
 		<div class="sen_div">
 			<button id="bt_sen1"class="bt_sen1 bt_sen" type="button">
@@ -330,7 +330,7 @@ h4 {
 			<button id="bt_sen2" class="bt_sen2 bt_sen" type="button">
 				<p style="margin-left:17px;">활동량<br>감 지</p>
 			</button>
-			<button id="bt_sen3" class="bt_sen3 bt_sen" type="button">
+			<button id="bt_sen3" class="bt_sen3 bt_sen" type="button" onclick="changeOutconfirm_go();">
 				<p style="margin-left:17px;">출입문<br>감 지</p>
 			</button>
 		</div>
@@ -509,6 +509,36 @@ document.getElementById("bt_sen1").onclick = function() {
     	data:{stype:'3'},
     });
 }
+
+function changeOutconfirm_go(){
+		alert("1");
+	  $.ajax({
+	    	url:'getChangeOutConfirm',
+	  		success:function(data){
+	  			if (data.outconfirm == 'N'){
+	  				var dateObj1=new Date(data.activetime);
+	  	          
+	  	         	var hour1=dateObj1.getHours();
+	  	         	var minute1 = dateObj1.getMinutes();
+	  	      		$('#activetime').text(hour1+"시 "+minute1+"분");
+	  	      		$('.home').text("재실");
+	  	      		
+	  	         	
+	  			}else{
+	  				var dateObj1=new Date(data.outtime);
+		  	          
+	  	         	var hour1=dateObj1.getHours();
+	  	         	var minute1 = dateObj1.getMinutes();
+	  	         	$('#outtime').text(hour1+"시 "+minute1+"분");
+	  	         	$('.out').text("외출");
+	  			}
+	  		},error:function(error){
+	  			alert(error);
+	  		} 
+	    });
+	
+}
+
 
 
 </script>

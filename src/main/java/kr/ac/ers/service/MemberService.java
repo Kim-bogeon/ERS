@@ -1,7 +1,5 @@
 package kr.ac.ers.service;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,7 +13,6 @@ public class MemberService {
 	private MemberMapper memberMapper;
 
 	public MemberVO getMember(int id) {
-		
 		return memberMapper.selectMember(id);
 	}
 	

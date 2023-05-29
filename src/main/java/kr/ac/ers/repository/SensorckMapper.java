@@ -3,10 +3,19 @@ package kr.ac.ers.repository;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+import kr.ac.ers.dto.SensorckVO;
+
 @Mapper
 public interface SensorckMapper {
-	void insertOutSensor(@Param("id") String  id, @Param("outconfirm")String outconfirm, @Param("outtime")String outtime);
 	
-	void insertActiveTime (@Param("id") String  id, @Param("activetime")String activetime);
+	public String selectOutconfirm(@Param("id") String  id);
+
+	void updateMemberStatusToY(@Param("id") String id);
+
+	void updateMemberStatusToN(@Param("id") String id);
+	
+	void updateActivetime(@Param("id") String id);
+
+	SensorckVO getSensorck(@Param("id") String id);
 
 }

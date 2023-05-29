@@ -1,5 +1,6 @@
 package kr.ac.ers.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kr.ac.ers.dto.ManagerVO;
@@ -8,12 +9,9 @@ import kr.ac.ers.repository.ManagerMapper;
 
 @Service
 public class ManagerService {
+	@Autowired
 	private ManagerMapper managerMapper;
 	
-	
-	public ManagerService(ManagerMapper managerMapper) {
-		this.managerMapper=managerMapper;
-	}
 	
 	public ManagerVO getManagerByLoginId(String loginId) {
 		return managerMapper.getManagerByLoginId(loginId);
