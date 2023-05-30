@@ -1,8 +1,0 @@
-package kr.ac.ers.controller;
-
-import org.springframework.stereotype.Controller;
-
-@Controller
-public class SensorckController {
-	
-}

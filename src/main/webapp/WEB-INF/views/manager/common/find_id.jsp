@@ -234,7 +234,7 @@ a{
 			</div>
 										
 	      	<div style="text-align:center; margin-top:40px;">
-	      		<button style="height:40px; background:#585858; border-radius:5px; border:0; cursor:pointer; background:#F2F2F2; border:1px solid #848484;" onclick="history.back();">뒤로가기</button>
+	      		<button style="height:40px; background:#585858; border-radius:5px; border:0; cursor:pointer; background:#F2F2F2; border:1px solid #848484;" onclick="history.back(); return false;">뒤로가기</button>
 				<button style="height:40px; background:#585858; border-radius:5px; border:0; color:white; cursor:pointer; background:#084B8A;" onclick="next_go(); return false;">다음으로</button>
 	      	</div>
     	</form>

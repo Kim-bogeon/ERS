@@ -156,7 +156,7 @@ public class ManagerController {
 	
 	@RequestMapping("/ers/manager/dofindid")
 	public String find_id(String name, String phone) {
-		phone = phone.substring(0,3) +"-" + phone.substring(3,7) + "-" +phone.substring(7,11);
+		phone = phone.substring(0,3) +"-" + phone.substring(3,7) + "-" +phone.substring(7);
 		String manid = managerService.manager_findId(name, phone);
 		
 		if (manid == null) {
